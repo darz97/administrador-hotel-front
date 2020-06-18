@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class EmpleadoComponent implements OnInit {
   cargo: Cargo = new Cargo();
-  empleados: Empleado[];
+  empleados: Empleado[] = [];
   empleadoSeleccionado: Empleado;
   constructor( private empleadoService: EmpleadoService, private location: Location) { }
 
@@ -36,6 +36,26 @@ export class EmpleadoComponent implements OnInit {
     this.empleadoService.updateByStatus(numeroDocumento).subscribe(
       _ => {
         location.reload();
+      }
+
+    );
+
+  }
+  vincularEmpleado(numeroDocumento: string){
+    this.empleadoService.vincular(numeroDocumento).subscribe(
+      _ => {
+        location.reload();
+      }
+
+    );
+
+  }
+  eliminarEmpleado(numeroDocumento: string){
+    this.empleadoService.delete(numeroDocumento).subscribe(
+      _ => {
+        this.empleados = this.empleados.filter(
+          empleado => empleado !== this.empleadoSeleccionado
+        );
       }
 
     );

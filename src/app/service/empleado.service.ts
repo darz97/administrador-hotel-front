@@ -42,4 +42,8 @@ export class EmpleadoService {
     return this.empleado.put<Empleado>(this.endPointUpdateByStatus.concat('/empleado').concat('/inactivo/').concat(numeroDocumento),
     {headers: this.HeaderText});
   }
+  vincular(numeroDocumento: string){
+    return this.empleado.put<Empleado>(this.endPointUpdateByStatus.concat('/empleado').concat('/activo/').concat(numeroDocumento),
+    {headers: this.HeaderText});
+  }
 }
