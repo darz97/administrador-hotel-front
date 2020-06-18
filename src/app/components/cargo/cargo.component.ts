@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cargo } from '../../model/cargo';
 import { CargoService } from '../../service/cargo.service';
-
-
 @Component({
   selector: 'app-cargo',
   templateUrl: './cargo.component.html',
@@ -12,10 +10,11 @@ export class CargoComponent implements OnInit {
   cargos: Cargo[] = [];
 
   cargoSeleccionado: Cargo;
+  public errorMsg;
   constructor(private cargoService: CargoService) { }
 
   ngOnInit(): void {
-
+    this.errorMsg = '';
     this.cargoService.listar().subscribe(
     (cargos) => {
       this.cargos = cargos;
@@ -35,8 +34,9 @@ export class CargoComponent implements OnInit {
         this.cargos = this.cargos.filter(
           cargo => cargo !== this.cargoSeleccionado
         );
-      }
-
+        this.errorMsg = '';
+      },
+      error => this.errorMsg = "No puede eliminar un Cargo que este asignado a un Empleado"
     );
 
   }

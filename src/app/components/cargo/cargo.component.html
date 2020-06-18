@@ -1,72 +1,58 @@
+<div *ngIf="errorMsg!=''" class="alert alert-danger" role="alert">
+    {{errorMsg}}
+</div>
 <app-formulario-cargo> </app-formulario-cargo>
 <div class="jumbotron">
-  <h2>
-    Listado de los cargos!
-  </h2>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cargo of cargos">
-        <th scope="row">{{ cargo.id }}</th>
-        <td>{{ cargo.nombre }}</td>
-        <td>
-          <button
-            class="btn btn-primary btn-lg"
-            style="margin: 10px;"
-            data-toggle="modal"
-            data-target="#modalRegistrarCargo"
-            (click)="onPreUpdateUsuario(cargo)"
-          >
+    <h2>
+        Listado de los cargos!
+    </h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cargo of cargos">
+                <th scope="row">{{ cargo.id }}</th>
+                <td>{{ cargo.nombre }}</td>
+                <td>
+                    <button class="btn btn-primary btn-lg" style="margin: 10px;" data-toggle="modal" data-target="#modalRegistrarCargo" (click)="onPreUpdateUsuario(cargo)">
             Editar
           </button>
-          <button
-            type="button"
-            class="btn btn-danger btn-lg"
-            data-toggle="modal"
-            data-target="#modalEliminarUsuario"
-            (click)="showModal(cargo)"
-          >
+                    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalEliminarUsuario" (click)="showModal(cargo)">
             Eliminar
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <!-- The Modal -->
 <div class="modal fade" id="modalEliminarUsuario">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Eliminar</h4>
-        <button type="button" class="close" data-dismiss="modal">×</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Eliminar</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
 
-      <!-- Modal body -->
-      <div class="modal-body">
-        ¿Está seguro que desea eliminar la información?
-      </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                ¿Está seguro que desea eliminar la información?
+            </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-danger"
-          data-dismiss="modal"
-          (click)="eliminarCargo(cargoSeleccionado.id)"
-        >
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminarCargo(cargoSeleccionado.id)">
           Aceptar
         </button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <app-cargo-modal></app-cargo-modal>
