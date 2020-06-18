@@ -1,0 +1,83 @@
+<app-formulario-empleado> </app-formulario-empleado>
+
+<div class="jumbotron">
+  <h2>
+    Listado de Empleados!
+  </h2>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col">tipo documento</th>
+        <th scope="col">Numero Documento</th>
+        <th scope="col">Cargo</th>
+        <th scope="col">Estado</th>
+
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empleado of empleados">
+        <td scope=" row ">{{ empleado.nombre }}</td>
+        <td>{{ empleado.apellido }}</td>
+        <td>{{ empleado.correo }}</td>
+        <td>{{ empleado.tipoDocumento.nombre }}</td>
+        <th>{{ empleado.numeroDocumento }}</th>
+        <td>{{ empleado.cargo.nombre }}</td>
+        <td>{{ empleado.estadoContrato }}</td>
+
+        <td>
+          <button
+            class="btn btn-primary btn-lg"
+            style="margin: 10px;"
+            data-toggle="modal "
+            data-target="#modalActualizarEmpleado"
+            (click)="onPreUpdateEmpleado(empleado)"
+          >
+            Editar
+          </button>
+          <button
+            type="button "
+            class="btn btn-danger btn-lg"
+            data-toggle="modal "
+            data-target="#modalDesvincularEmpleado"
+            (click)="showModal(empleado)"
+          >
+            Desvincular
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal fade" id="modalDesvincularEmpleado">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Eliminar</h4>
+        <button type="button " class="close" data-dismiss="modal ">×</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        ¿Está seguro que desea eliminar la información?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button
+          type="button "
+          class="btn btn-danger"
+          data-dismiss="modal "
+          (click)="desvincularEmpleado(empleadoSeleccionado.numeroDocumento)"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-empleado-modal> </app-empleado-modal>

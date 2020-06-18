@@ -1,0 +1,85 @@
+<!-- Modal -->
+<div class="modal fade" id="modalActualizarEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Actualizar Empleado
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        Ingresar información
+                    </div>
+
+                    <div class="card-body">
+                        <form class="form-usuario" #empleadoForm="ngForm" (ngSubmit)="update(empleadoForm)">
+                            <input type="hidden" id="numeroDocumento" name="numeroDocumento" class="form-control" [(ngModel)]="
+                  this.empleadoService.empleadoSeleccionado.numeroDocumento
+                " />
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="nombre">nombre</label>
+                                    <input type="text" class="form-control" id="nombre" placeholder="nombre" name="nombre" [(ngModel)]="
+                      this.empleadoService.empleadoSeleccionado.nombre
+                    " minlength="4" #nombre="ngModel" required />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="apellido">apellido</label>
+                                    <input type="text" class="form-control" id="apellido" placeholder="apellido" name="apellido" [(ngModel)]="
+                      this.empleadoService.empleadoSeleccionado.apellido
+                    " minlength="4" #apellido="ngModel" required />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="correo">correo</label>
+                                    <input type="email" class="form-control" id="correo" placeholder="correo" name="correo" [(ngModel)]="
+                      this.empleadoService.empleadoSeleccionado.correo
+                    " minlength="4" #correo="ngModel" required />
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="tipoDocumento">Tipo Documento</label>
+                                    <select id="tipoDocumento" name="tipoDocumento" class="form-control" [(ngModel)]="
+                      this.empleadoService.empleadoSeleccionado.tipoDocumento
+                    " #tipoDocumento="ngModel" required>
+                    <option
+                      *ngFor="let tipoDocumento of tipoDocumentos"
+                      [ngValue]="tipoDocumento"
+                      >{{ tipoDocumento.nombre }}</option
+                    >
+                  </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="cargo">Cargo</label>
+                                    <select id="cargo" name="cargo" class="form-control" [(ngModel)]="
+                      this.empleadoService.empleadoSeleccionado.cargo
+                    " #cargo="ngModel" required>
+                    <option *ngFor="let cargo of cargos" [ngValue]="cargo"
+                      >{{ cargo.nombre }}
+                    </option>
+                  </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-primary" style="margin: 10px;">
+                  Guardar
+                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin: 10px;">
+                  Cancelar
+                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

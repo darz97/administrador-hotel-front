@@ -1,0 +1,92 @@
+<div class="jumbotron">
+    <h2>
+        Registro de empleado
+    </h2>
+    <p>
+        Diligencie el siguiente formulario para el registro del empleado
+    </p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form (ngSubmit)="insert()" #empleadoForm="ngForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="nombre">nombre</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="nombre" name="nombre" [(ngModel)]="empleado.nombre" minlength="4" #nombre="ngModel" required />
+                            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                <div *ngIf="nombre?.errors.required">
+                                    el nombre es requerido
+                                </div>
+                                <div *ngIf="nombre?.errors.minlength">
+                                    EL nombre debe tener al menos 3 carcateres
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="apellido">apellido</label>
+                            <input type="text" class="form-control" id="apellido" placeholder="apellido" name="apellido" [(ngModel)]="empleado.apellido" minlength="4" #apellido="ngModel" required />
+                            <div class="alert alert-danger" *ngIf="nombre.invalid && (apellido.dirty || apellido.touched)">
+                                <div *ngIf="apellido?.errors.required">
+                                    el nombre es requerido
+                                </div>
+                                <div *ngIf="apellido?.errors.minlength">
+                                    EL nombre debe tener al menos 3 carcateres
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="correo">correo</label>
+                            <input type="email" class="form-control" id="correo" placeholder="correo" name="correo" [(ngModel)]="empleado.correo" minlength="4" #correo="ngModel" required />
+                            <div class="alert alert-danger" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+                                <div *ngIf="correo?.errors.required">
+                                    el nombre es requerido
+                                </div>
+                                <div *ngIf="correo?.errors.minlength">
+                                    EL nombre debe tener al menos 3 carcateres
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="numeroDocumento">Numero Documento</label>
+                            <input type="number" class="form-control" id="numeroDocumento" placeholder="numeroDocumento" name="numeroDocumento" [(ngModel)]="empleado.numeroDocumento" minlength="4" #numeroDocumento="ngModel" required />
+                            <div class="alert alert-danger" *ngIf="
+                  numeroDocumento.invalid &&
+                  (numeroDocumento.dirty || numeroDocumento.touched)
+                ">
+                                <div *ngIf="numeroDocumento?.errors.required">
+                                    el nombre es requerido
+                                </div>
+                                <div *ngIf="numeroDocumento?.errors.minlength">
+                                    EL nombre debe tener al menos 3 carcateres
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="tipoDocumento">Tipo Documento</label>
+                            <select id="tipoDocumento" name="tipoDocumento" class="form-control" [(ngModel)]="empleado.tipoDocumento" #tipoDocumento="ngModel" required>
+                <option
+                  *ngFor="let tipoDocumento of tipoDocumentos"
+                  [ngValue]="tipoDocumento"
+                  >{{ tipoDocumento.nombre }}</option
+                >
+              </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="cargo">Cargo</label>
+                            <select id="cargo" name="cargo" class="form-control" [(ngModel)]="empleado.cargo" #cargo="ngModel" required>
+                <option *ngFor="let cargo of cargos" [ngValue]="cargo"
+                  >{{ cargo.nombre }}
+                </option>
+              </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

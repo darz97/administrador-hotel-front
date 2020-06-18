@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade" id="modalRegistrarCargo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    {{ !this.cargoService.cargoSeleccionado.id ? "Nuevo cargo" : "Actualizar cargo" }}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header">
+                        Ingresar información
+                    </div>
+
+                    <div class="card-body">
+                        <form class="form-usuario" #cargoForm="ngForm" (ngSubmit)="guardandoCargo(cargoForm)">
+                            <input type="hidden" id="cargoId" name="cargoId" class="form-control" [(ngModel)]="this.cargoService.cargoSeleccionado.id" />
+
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="nombre" name="nombre" [(ngModel)]="this.cargoService.cargoSeleccionado.nombre" minlength="4" #nombre="ngModel" required />
+                                <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                                    <div *ngIf="nombre?.errors.required">
+                                        el nombre es requerido
+                                    </div>
+                                    <div *ngIf="nombre?.errors.minlength">
+                                        EL nombre debe tener al menos 3 carcateres
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-primary" style="margin: 10px;">
+                  Guardar
+                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin: 10px;">
+                  Cancelar
+                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

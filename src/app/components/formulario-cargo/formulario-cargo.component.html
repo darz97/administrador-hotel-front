@@ -1,0 +1,28 @@
+<div class="jumbotron">
+    <h2>
+        Registro del cargo
+    </h2>
+    <p>
+        ingrese el nombre del cargo
+    </p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <form (ngSubmit)="insert()" #cargoForm="ngForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="nombre" name="nombre" [(ngModel)]="cargo.nombre" minlength="4" #nombre="ngModel" required />
+                        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                            <div *ngIf="nombre?.errors.required">el nombre es requerido</div>
+                            <div *ngIf="nombre?.errors.minlength">
+                                EL nombre debe tener al menos 3 carcateres
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" [disabled]="!cargoForm.form.valid">Aceptar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
