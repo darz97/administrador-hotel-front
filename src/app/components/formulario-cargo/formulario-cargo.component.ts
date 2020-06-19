@@ -15,17 +15,20 @@ import { Location } from '@angular/common';
 export class FormularioCargoComponent implements OnInit {
 
   cargo: Cargo = new Cargo();
+  public errorMsgCargo;
 
   constructor(private cargoService: CargoService, private router: Router) { }
 
   ngOnInit(): void {
+    this.errorMsgCargo = '';
   }
 
   insert(){
     this.cargoService.insert(this.cargo).subscribe(
       _ => {
         location.reload();
-      }
+      },
+      error => this.errorMsgCargo = 'Error, el Cargo ya se encontraba registrado.'
     );
  }
 

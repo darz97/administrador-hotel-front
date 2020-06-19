@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cargo } from '../../model/cargo';
 import { CargoService } from '../../service/cargo.service';
+import { FormularioCargoComponent } from '../formulario-cargo/formulario-cargo.component';
 @Component({
   selector: 'app-cargo',
   templateUrl: './cargo.component.html',
@@ -8,7 +9,7 @@ import { CargoService } from '../../service/cargo.service';
 })
 export class CargoComponent implements OnInit {
   cargos: Cargo[] = [];
-
+  formularioCargoComponent: FormularioCargoComponent;
   cargoSeleccionado: Cargo;
   public errorMsg;
   constructor(private cargoService: CargoService) { }
@@ -35,8 +36,9 @@ export class CargoComponent implements OnInit {
           cargo => cargo !== this.cargoSeleccionado
         );
         this.errorMsg = '';
+        this.formularioCargoComponent.errorMsgCargo = '';
       },
-      error => this.errorMsg = "No puede eliminar un Cargo que este asignado a un Empleado"
+      error => this.errorMsg = 'No puede eliminar un Cargo que este asignado a un Empleado'
     );
 
   }

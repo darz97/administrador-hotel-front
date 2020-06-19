@@ -16,10 +16,12 @@ export class FormularioEmpleadoComponent implements OnInit {
   cargos: Cargo[] = [];
 
   tipoDocumentos: TipoDocumento[] = [];
+  public errorMsgEmpleado;
   constructor( private empleadoService: EmpleadoService, private cargoService: CargoService,
                private tipoDocumentoService: TipoDocumentoService) { }
 
   ngOnInit(): void {
+    this.errorMsgEmpleado = '';
     this.cargoService.listar().subscribe(
       (cargos) => {
         this.cargos = cargos;
@@ -27,7 +29,7 @@ export class FormularioEmpleadoComponent implements OnInit {
     );
 
     this.tipoDocumentoService.listar().subscribe(
-      (tipoDocumentos) =>{
+      (tipoDocumentos) => {
         this.tipoDocumentos = tipoDocumentos;
       }
     );
@@ -36,7 +38,8 @@ export class FormularioEmpleadoComponent implements OnInit {
       this.empleadoService.insert(this.empleado).subscribe(
         _ => {
           location.reload();
-        }
+        },
+        error => this.errorMsgEmpleado = 'No se puede agregar el Empleado'
       );
     }
 
